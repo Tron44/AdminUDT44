@@ -1,0 +1,108 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Gesti&oacute;n Cuestionarios UDIMA</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!--jQuery-->
+  <script type="text/javascript" src="assets/jquery.min.js"></script>
+
+  <!--Bootstrap-->
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
+  <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+   <!--Estilos-->
+  <link rel="stylesheet" href="assets/styles.css"/>
+  
+</head>
+<body>
+
+
+<div class="container">
+	<div class="row">
+		
+		<header id="header" class="col-11">
+			<h1>
+			  Administraci&oacute;n de Cuestionarios UDIMA 
+			</h1>
+		</header>
+		<div class="col-1 uno"><br></div>
+		
+	</div>
+	<div class="row">	
+	<nav id="nav" class="col-12">
+		<ul>
+			<li><a href="/cuestionariosUDT44/login.do?logoff=S">Logoff</a></li>			
+			<li><a href="/cuestionariosUDT44/listarcuestionario.do">Listar cuestionarios</a></li>
+			<li><a class="activado">Crear cuestionario</a></li>		
+		</ul>
+	</nav>	
+	</div>
+		<bordefila class="row">			
+			<div class="col-2" style="background-color:white;">&nbsp;</div>
+			<div class="col-8 align-self-center" style="background-color:white;">
+			
+				Bienvenido Tron
+				<script type="text/javascript">
+            	function carga() {
+            		var destino='http://www.google.es?selecion=' +sel1.options[sel1.selectedIndex].value;
+    				window.location.href=destino;
+            	}
+       		 	</script>
+				
+				
+				
+				<div class='form-group'>
+<label for='sel1'>Listado de grados</label>
+<select class='form-control' id='sel1' onchange='carga()'>
+<option value='107' '107>
+Ingenieria informatica</option>
+<option value='108' '108>
+Empresariales</option>
+<option value='110' '110>
+Industriales</option>
+</select>
+
+<select class='form-control' id='sel2' onchange=alert(sel2.options[sel2.selectedIndex].value)>
+<option value='107' '107>
+Ingenieria informatica</option>
+<option value='108' '108>
+Empresariales</option>
+<option value='110' '110>
+Industriales</option>
+</select>
+
+</div>
+
+				
+			</div>
+			<div class="col-2 align-self-end">
+			</div>
+		</bordefila>	
+	
+		
+	<div class="row">		
+		<footer id="footer" class="col-12">
+			<p>Ra&uacute;l Arranz Molinero - Administraci&oacute;n de Cuestionarios UDIMA</p>
+		</footer>
+	</div>
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

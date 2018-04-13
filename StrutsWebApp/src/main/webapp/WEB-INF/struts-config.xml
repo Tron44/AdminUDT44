@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="loginForm" type="com.udimacuestion.struts.form.LoginForm" />
+		<form-bean name="crearcuestionarioForm" type="com.udimacuestion.struts.form.CrearCuestionarioForm" />
+		<form-bean name="crearpreguntarespuestaForm" type="com.udimacuestion.struts.form.CrearPreguntaRespuestaForm" />
+		<form-bean name="usuarioForm" type="com.udimacuestion.struts.form.UsuarioForm" />
+		<form-bean name="cargarcuestionarioForm" type="com.udimacuestion.struts.form.CargarCuestionarioForm" />
+	</form-beans>
+	<action-mappings>
+		<action name="loginForm" path="/login"
+			type="com.udimacuestion.struts.action.LoginAction" scope="request"
+			input="/login.jsp">
+			<forward name="fallo" path="/login.jsp" redirect="true" />
+			<forward name="hecho" path="/success.jsp" redirect="true" />
+		</action>
+		
+		<action name="crearcuestionarioForm" path="/crearcuestionario"
+			type="com.udimacuestion.struts.action.CrearCuestionarioAction" scope="request">
+			<forward name="fallo" path="/success.jsp" redirect="true" />
+			<forward name="hecho" path="/crearcuestionario.jsp" redirect="true" />
+			<forward name="gradosel" path="/crearcuestionario.jsp" redirect="true" />
+			<forward name="asignaturasel" path="/crearcuestionario.jsp" redirect="true" />
+			<forward name="nombrecontrolsel" path="/crearcuestionario.jsp" redirect="true" />
+		</action>
+		
+		<action name="crearpreguntarespuestaForm" path="/crearpreguntarespuesta"
+			type="com.udimacuestion.struts.action.CrearPreguntaRespuestaAction" scope="request">
+			<forward name="fallo" path="/success.jsp" redirect="true" />
+			<forward name="hecho" path="/crearcuestionario.jsp" redirect="true" />			
+		</action>
+		
+		<action name="crearcuestionarioForm" path="/listarcuestionario"
+			type="com.udimacuestion.struts.action.ListarCuestionarioAction" scope="request">
+			<forward name="fallo" path="/success.jsp" redirect="true" />
+			<forward name="hecho" path="/listarcuestionario.jsp" redirect="true" />
+			<forward name="gradosel" path="/listarcuestionario.jsp" redirect="true" />
+			<forward name="asignaturasel" path="/listarcuestionario.jsp" redirect="true" />
+			<forward name="controlsel" path="/listarcuestionario.jsp" redirect="true" />
+			<forward name="ciao" path="/login.jsp" redirect="true" />
+		</action>
+		
+		<action name="usuarioForm" path="/adminusuario"
+			type="com.udimacuestion.struts.action.UsuarioAction" scope="request">
+			<forward name="fallo" path="/success.jsp" redirect="true" />
+			<forward name="hecho" path="/usuarios.jsp" redirect="true" />
+		</action>
+		
+		<action name="cargarcuestionarioForm" path="/cargarcuestionario"
+			type="com.udimacuestion.struts.action.CargarCuestionarioAction" scope="request" input="input">			           
+			<forward name="fallo" path="/success.jsp" redirect="true" />
+			<forward name="hecho" path="/cargarcuestionario.jsp" redirect="true" />
+		</action>
+		
+	</action-mappings>
+</struts-config>
