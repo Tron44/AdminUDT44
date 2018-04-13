@@ -18,7 +18,7 @@
   <!--Bootstrap-->
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
   <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-   <!--Estilos-->
+  
   <link rel="stylesheet" href="assets/styles.css"/>
   
    <script type="text/javascript">
