@@ -30,6 +30,7 @@
   		window.location.href=destino;
 	    }
  	}
+   
    function controlSeleccionUsuDel() {
 	    if (selU2.options[selU2.selectedIndex].value !=0){
     	destino='/cuestionariosUDT44/adminusuario.do?usuSelDel=' +selU2.options[selU2.selectedIndex].value;
