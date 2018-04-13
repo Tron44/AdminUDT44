@@ -25,8 +25,7 @@
    
   var destino="";
    
-   function controlSeleccionUsu() {
-	   
+   function controlSeleccionUsu() {	   
 	    if (selU2.options[selU2.selectedIndex].value !=0){
      	destino='/cuestionariosUDT44/adminusuario.do?usuSel=' +selU2.options[selU2.selectedIndex].value;
   		window.location.href=destino;
