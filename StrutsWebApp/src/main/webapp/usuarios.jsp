@@ -18,7 +18,7 @@
   <!--Bootstrap-->
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
   <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-  
+   <!--Estilos pagina actual-->
   <link rel="stylesheet" href="assets/styles.css"/>
   
    <script type="text/javascript">
@@ -26,6 +26,7 @@
   var destino="";
    
    function controlSeleccionUsu() {
+	   
 	    if (selU2.options[selU2.selectedIndex].value !=0){
      	destino='/cuestionariosUDT44/adminusuario.do?usuSel=' +selU2.options[selU2.selectedIndex].value;
   		window.location.href=destino;
