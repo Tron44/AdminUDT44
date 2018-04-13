@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="assets/styles.css"/>
   
    <script type="text/javascript">
+   
   var destino="";
    
    function controlSeleccionUsu() {
