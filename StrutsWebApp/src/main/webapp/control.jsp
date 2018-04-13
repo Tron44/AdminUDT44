@@ -27,6 +27,8 @@
 					}
 					
 					
+				}else{
+					out.println("</div>");
 				}
 				
 				%>

@@ -18,7 +18,7 @@
   <!--Bootstrap-->
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"/>
   <script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
-   <!--Estilos  actual -->
+   <!--Estilos  actual fic -->
   <link rel="stylesheet" href="assets/styles.css"/>
   
    <script type="text/javascript">
@@ -124,12 +124,7 @@
 		</bordefila>	
 	</html:form>	
 	
-		
-	<div class="row">		
-		<footer id="footer" class="col-12">
-			<p>Ra&uacute;l Arranz Molinero - Administraci&oacute;n de Cuestionarios UDIMA</p>
-		</footer>
-	</div>
+	
 	
 </div>
 

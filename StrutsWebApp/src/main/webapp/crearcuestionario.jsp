@@ -104,12 +104,6 @@
 		
 		</bordefila>	
 	
-		
-	<div class="row">		
-		<footer id="footer" class="col-12">
-			<p>Ra&uacute;l Arranz Molinero - Administraci&oacute;n de Cuestionarios UDIMA</p>
-		</footer>
-	</div>
 	
 	
 	

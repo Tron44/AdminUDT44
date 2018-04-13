@@ -33,7 +33,7 @@
 						out.println("<input type='text' value='Introduce el nuevo nombre del cuestionario' name='campotexto' size='50' style='height:40px' id='campotexto' disabled='true'>");
 						out.println("<input type='hidden' name='controlSeleccionado' id='controlSeleccionado' value='" + controlSeleccionado + "'>");
 						out.println("<input type='submit' value=' >> ' class='btn btn-primary' name='modificarcuestionario'>");
-						out.println("</form>");
+						out.println("</form><p>");
 						//out.println("<a href='/cuestionariosUDT44/listarcuestionario.do?modificarcuestionario=" + controlSeleccionado + "' class='btn btn-primary'> >> </a>");
 						
 					}
