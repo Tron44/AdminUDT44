@@ -1,0 +1,185 @@
+CREATE TABLE `cuestionarioudima`.`secuencia` (
+    `sequence_name` varchar(100) NOT NULL,
+    `sequence_increment` int(11) unsigned NOT NULL DEFAULT 1,
+    `sequence_min_value` int(11) unsigned NOT NULL DEFAULT 1,
+    `sequence_max_value` bigint(20) unsigned NOT NULL DEFAULT 18446744073709551615,
+    `sequence_cur_value` bigint(20) unsigned DEFAULT 1,
+    `sequence_cycle` boolean NOT NULL DEFAULT FALSE,
+    PRIMARY KEY (`sequence_name`)
+) ENGINE=MyISAM;
+
+
+-- This code will create sequence with default values.
+
+INSERT INTO cuestionarioudima.secuencia
+    (sequence_name)
+VALUE
+    ('sec_cuestionario')
+;
+ 
+
+-- You can also customize the sequence behavior.
+
+INSERT INTO cuestionarioudima.secuencia
+    
+(sequence_name, sequence_increment, sequence_max_value)
+VALUE
+    ('sec_cuestionario_2', 10, 100000)
+;
+
+
+
+CREATE FUNCTION `nextvalcuest` (`seq_name` varchar(100))
+RETURNS bigint(20) NOT DETERMINISTIC
+BEGIN
+    DECLARE cur_val bigint(20);
+ 
+    SELECT
+        sequence_cur_value INTO cur_val
+    FROM
+        cuestionarioudima.secuencia
+    WHERE
+        sequence_name = seq_name
+    ;
+ 
+    IF cur_val IS NOT NULL THEN
+        UPDATE
+            cuestionarioudima.secuencia
+        SET
+            sequence_cur_value = IF (
+                (sequence_cur_value + sequence_increment) > sequence_max_value,
+                IF (
+                    sequence_cycle = TRUE,
+                    sequence_min_value,
+                    NULL
+                ),
+                sequence_cur_value + sequence_increment
+            )
+        WHERE
+            sequence_name = seq_name
+        ;
+    END IF;
+ 
+    RETURN cur_val;
+END
+
+
+
+
+SELECT nextvalcuest('sec_cuestionario') as next_sequence;
+
+
+---
+
+
+-- This code will create sequence with default values.
+
+
+INSERT INTO cuestionarioudima.secuencia
+    (sequence_name)
+VALUE
+    ('sec_pregunta')
+;
+ 
+
+-- You can also customize the sequence behavior.
+
+INSERT INTO cuestionarioudima.secuencia
+    (sequence_name, sequence_increment, sequence_max_value)
+VALUE
+    ('sec_pregunta_2', 10, 100000)
+;
+
+
+
+CREATE FUNCTION `nextvalpreg` (`seq_name` varchar(100))
+RETURNS bigint(20) NOT DETERMINISTIC
+BEGIN
+    DECLARE cur_val bigint(20);
+ 
+    SELECT
+        sequence_cur_value INTO cur_val
+    FROM
+        cuestionarioudima.secuencia
+    WHERE
+        sequence_name = seq_name
+    ;
+ 
+    IF cur_val IS NOT NULL THEN
+        UPDATE
+            cuestionarioudima.secuencia
+        SET
+            sequence_cur_value = IF (
+                (sequence_cur_value + sequence_increment) > sequence_max_value,
+                IF (
+                    sequence_cycle = TRUE,
+                    sequence_min_value,
+                    NULL
+                ),
+                sequence_cur_value + sequence_increment
+            )
+        WHERE
+            sequence_name = seq_name
+        ;
+    END IF;
+ 
+    RETURN cur_val;
+END
+
+
+
+SELECT nextvalpreg('sec_pregunta') as next_sequence;
+
+---
+
+INSERT INTO cuestionarioudima.secuencia     
+(sequence_name) VALUE     ('sec_respuesta')
+
+INSERT INTO cuestionarioudima.secuencia     
+(sequence_name, sequence_increment, sequence_max_value) VALUE     
+('sec_respuesta_2', 10, 100000)
+
+CREATE FUNCTION `nextvalresp` (`seq_name` varchar(100))
+RETURNS bigint(20) NOT DETERMINISTIC
+BEGIN
+    DECLARE cur_val bigint(20);
+ 
+    SELECT
+        sequence_cur_value 
+
+INTO cur_val
+    FROM
+        cuestionarioudima.secuencia
+    WHERE
+        sequence_name = seq_name
+    ;
+ 
+    IF cur_val IS NOT NULL THEN
+        UPDATE
+            
+
+cuestionarioudima.secuencia
+        SET
+            sequence_cur_value = IF (
+                (sequence_cur_value + sequence_increment) > sequence_max_value,
+              
+
+  IF (
+                    sequence_cycle = TRUE,
+                    sequence_min_value,
+                    NULL
+                ),
+                sequence_cur_value + 
+
+sequence_increment
+            )
+        WHERE
+            sequence_name = seq_name
+        ;
+    END IF;
+ 
+    RETURN cur_val;
+END
+
+
+SELECT nextvalresp('sec_respuesta') as next_sequence
