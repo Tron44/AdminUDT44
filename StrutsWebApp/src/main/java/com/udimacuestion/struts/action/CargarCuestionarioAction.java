@@ -101,8 +101,7 @@ public class CargarCuestionarioAction extends Action {
 
 		}
 		sesion.setAttribute("procesado", "pok");
-		// en el caso de que haya ido mal hay que poner
-		// sesion.setAttribute("procesado", "nook");
+		
 		return "hecho";
 	}
 
