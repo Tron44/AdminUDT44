@@ -23,7 +23,7 @@
 				<br>		
 				<input type='radio'  name='tipoPregunta' value='Incluyente' checked>Incluyente&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type='radio' name='tipoPregunta' value='Excluyente'>Excluyente	
-				<br>Num. de respuestas:	<input type='number'  Style='width:45px' min='1' max='10' name='numeroRespuestas' value='1'>&nbsp;
+				<br>Num. de respuestas:	<input type='number'  Style='width:45px' min='2' max='10' name='numeroRespuestas' value='1'>&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<input type='submit' value='>> respuestas' class='btn btn-primary'><br>
 				<br><br><br>

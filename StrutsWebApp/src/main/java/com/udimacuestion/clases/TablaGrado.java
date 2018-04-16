@@ -15,16 +15,8 @@ public class TablaGrado implements Serializable {
 	// atributos del objeto de grado. TablaGrado
 	private int idGrado = 0;
 	private String nombreGrado = null;
-	private ArrayList<TablaAsignatura> listaAsignaturas = null;
-
-	public ArrayList<TablaAsignatura> getListaAsignaturas() {
-		return listaAsignaturas;
-	}
-
-	public void setListaAsignaturas(ArrayList<TablaAsignatura> listaAsignaturas) {
-		this.listaAsignaturas = listaAsignaturas;
-	}
-
+	
+	
 	public String getNombreGrado() {
 		return nombreGrado;
 	}
