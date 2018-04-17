@@ -5,11 +5,10 @@
 	<artifactId>cuestionariosUDT44</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0</version>
-	<name>StrutsWebApp Maven Webapp</name>
+	<name>StrutsWebAdminUDT44</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-            <wtpversion>1.5</wtpversion>
-            <nextply.version>3.6.0</nextply.version>
+            <wtpversion>1.5</wtpversion>            
   </properties>
 
 	<dependencies>		
