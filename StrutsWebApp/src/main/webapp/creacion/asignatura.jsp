@@ -35,5 +35,5 @@
 				}
 					%>
 					<p>
-				<%@ include file="/control.jsp" %>
+				<%@ include file="/creacion/control.jsp" %>
 	

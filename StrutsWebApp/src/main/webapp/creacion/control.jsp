@@ -17,7 +17,7 @@
 						out.println("class='form-control' value='"+ nombreControlSel2 +"' disabled>");
 						out.println("<br><br>");
 						out.println("</div>");%>
-						<%@ include file="/pregunta.jsp"%>
+						<%@ include file="/creacion/pregunta.jsp"%>
 					<% }else{
 						out.println("<label>Nombre del control</label><br>");				
 						out.println("<input type='text' size='50' id='nombreC'");

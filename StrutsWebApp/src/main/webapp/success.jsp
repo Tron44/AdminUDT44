@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta charset="UTF-8"/>
+
 <title>Gesti&oacute;n Cuestionarios UDIMA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 

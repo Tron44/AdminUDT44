@@ -15,7 +15,7 @@
 				out.println(tipoPregunta);	
 				out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N&uacute;mero de respuestas: " + numeroRespuestas);
 				out.println("<br><br>");%>
-				<%@ include file="/respuesta.jsp"%>
+				<%@ include file="/creacion/respuesta.jsp"%>
 			<%}else{%>
 				<html:form action="/crearpreguntarespuesta">
 				<label>Texto de la pregunta</label><br>				

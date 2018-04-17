@@ -4,7 +4,7 @@
 	<groupId>com.udima.cuestionariosUDT44</groupId>
 	<artifactId>cuestionariosUDT44</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0T</version>
+	<version>1.0.0</version>
 	<name>StrutsWebApp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta charset="UTF-8"/>
+
 <title>Gesti&oacute;n Cuestionarios UDIMA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -105,9 +105,15 @@
 				<label>
 				SuperUsuario 						
 				</label>
-				<%out.println("<input type='radio' name='superUsuario' value='1'>SI");%>
-				<%out.println("<input type='radio' name='superUsuario' value='0'>NO");%>
-				
+				<%
+				if (tablaUsuario.getSuperUsuario()==1){
+					out.println("<input type='radio' name='superUsuario' value='1' checked>SI");
+					out.println("<input type='radio' name='superUsuario' value='0'>NO");
+				}else{
+					out.println("<input type='radio' name='superUsuario' value='1'>SI");
+					out.println("<input type='radio' name='superUsuario' value='0' checked>NO");
+				}
+				%>
 				<p>
 				<%
 				if (tablaUsuario.getIdUsuario() ==0){
@@ -118,7 +124,7 @@
 				}
 				%>
 			</div>
-			<%@ include file="/listadousuarios.jsp" %>
+			<%@ include file="/usuario/listadousuarios.jsp" %>
 			
 			
 		</bordefila>	
