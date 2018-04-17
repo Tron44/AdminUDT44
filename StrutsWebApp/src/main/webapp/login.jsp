@@ -53,14 +53,14 @@
 				Usuario		
 				</label>
 				<br>				
-				<html:text property="userName" value="Tron" size='50' style='height:40px'/>
+				<html:text property="userName" value="" size='50' style='height:40px'/>
 				
 				<br><br>
 				<label>
 				Password			
 				</label>
 				<br>
-		 		<html:password property="password" value="Tron" size='50' style='height:40px'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 		<html:password property="password" value="" size='50' style='height:40px'/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 		<input type="submit" value='Login' class="btn btn-primary">
 				<br>
 				<br>
