@@ -200,16 +200,32 @@ public class CargarCuestionarioAction extends Action {
 										contadorRespuestas++;
 										if (textoRespuesta.substring(0, 1).equals("=")) {
 											valido = true;
-											contadorValidos++;
-											// System.out.println("y es =" + valido + ":::" + contadorValidos );
+											contadorValidos++;											
 										}
-										System.out.println("contadorRespuestascontadorRespuestascontadorRespuestas="
-												+ contadorRespuestas);
 										textoRespuesta = textoRespuesta.substring(1);
+										
+										if (textoRespuesta.substring(0, 1).equals("%")) {
+											//se ha encontrado porcentaje de pregunta, no se trata
+											StringTokenizer stporcentaje = new StringTokenizer(textoRespuesta, "%");
+											stporcentaje.nextToken();
+											textoRespuesta = stporcentaje.nextToken();
+										}
+										
+										System.out.println("textoRespuesta*******: " + textoRespuesta);
+										
+										
 										if (textoRespuesta.contains("[html]"))
 											textoRespuesta = textoRespuesta.substring(6);
 										if (textoRespuesta.contains("[moodle]"))
 											textoRespuesta = textoRespuesta.substring(8);
+										
+										if (textoRespuesta.substring(0, 1).equals("%")) {
+											//se ha encontrado porcentaje de pregunta, no se trata
+											StringTokenizer stporcentaje = new StringTokenizer(textoRespuesta, "%");
+											stporcentaje.nextToken();
+											textoRespuesta = stporcentaje.nextToken();
+										}										
+										
 										tablaRespuesta = new TablaRespuesta();
 										System.out.println("Respuesta final=" + textoRespuesta);
 										tablaRespuesta.setTextoRespuesta(textoRespuesta);
