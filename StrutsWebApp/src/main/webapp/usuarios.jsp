@@ -113,7 +113,7 @@
 				<p>
 				<%
 				if (tablaUsuario.getIdUsuario() ==0){
-					out.println("<input type='submit' value='Alta Usuario / Acceso' name='altausuario' class='btn btn-primary'>");
+					out.println("<input type='submit' value='Alta Usuario' name='altausuario' class='btn btn-primary'>");
 				}else{
 					out.println("<input type='submit' value='Modificar Usuario' name='modusuario' class='btn btn-primary'>");
 					out.println("<input type='submit' value='Borrar' class='btn btn-danger' name='borrarusuario' onclick=\"return confirm('¿Estás seguro de eliminar al usuario seleccionado?')\"/>");
