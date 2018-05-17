@@ -79,7 +79,7 @@ public class UsuarioAction extends Action {
 			}
 		}
 
-		return "hecho";
+		return listadoUsuarios();
 	}
 
 	public String altaUsuario(ActionForm form) {

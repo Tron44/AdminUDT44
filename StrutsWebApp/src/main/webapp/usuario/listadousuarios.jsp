@@ -15,9 +15,23 @@
 					}%>		
 					</select></div>
 					<%out.println("<input type='button' value='Modificar' class='btn btn-info' onclick='controlSeleccionUsu()'>&nbsp;&nbsp;&nbsp;&nbsp;");
-										
-					
 				}
+				
+				if (listaUsuarios != null){%>
+					<div class='form-group'>
+					<label for='selUser'>Listado de usuarios</label>
+					<%for(int x=0;x<listaUsuarios.size();x++) {
+						if (((TablaUsuario)listaUsuarios.get(x)).getSuperUsuario()==1){						
+						  out.print("<input type='radio'  name='usuarios' value='" + ((TablaUsuario)listaUsuarios.get(x)).getIdUsuario() + "'>" + ((TablaUsuario)listaUsuarios.get(x)).getUsuario() + "  (" + ((TablaUsuario)listaUsuarios.get(x)).getUsuario() + ")  SuperUsuario");
+						}else{
+						  out.print("<input type='radio'  name='usuarios' value='" + ((TablaUsuario)listaUsuarios.get(x)).getIdUsuario() + "'>" + ((TablaUsuario)listaUsuarios.get(x)).getUsuario() + "  (" + ((TablaUsuario)listaUsuarios.get(x)).getUsuario() + ")");
+						}
+					}%>		
+					</div>
+					<%out.println("<input type='button' value='Modificar' class='btn btn-info' onclick='controlSeleccionUsu()'>&nbsp;&nbsp;&nbsp;&nbsp;");
+	
+				}
+				
 				out.println("</div>");
 					%>
 					
