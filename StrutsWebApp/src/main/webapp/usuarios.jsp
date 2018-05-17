@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -116,7 +116,7 @@
 					out.println("<input type='submit' value='Alta Usuario' name='altausuario' class='btn btn-primary'>");
 				}else{
 					out.println("<input type='submit' value='Modificar Usuario' name='modusuario' class='btn btn-primary'>");
-					out.println("<input type='submit' value='Borrar' class='btn btn-danger' name='borrarusuario' onclick=\"return confirm('¿Estás seguro de eliminar al usuario seleccionado?')\"/>");
+					out.println("<input type='submit' value='Borrar' class='btn btn-danger' name='borrarusuario' onclick=\"return confirm('Â¿EstÃ¡s seguro de eliminar al usuario seleccionado?')\"/>");
 				}
 				%>
 			</div>
