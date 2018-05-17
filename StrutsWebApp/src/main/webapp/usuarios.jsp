@@ -26,10 +26,10 @@
    
   var destino="";
    
-   function controlSeleccionUsu() {	   
-	    if (selU2.options[selU2.selectedIndex].value !=0){
-     	destino='/cuestionariosUDT44/adminusuario.do?usuSel=' +selU2.options[selU2.selectedIndex].value;
-  		window.location.href=destino;
+   function controlSeleccionUsu() {
+	    if (formusu.usuSel.value != null || formusu.usuSel.value != ""){
+     		destino='/cuestionariosUDT44/adminusuario.do?usuSel=' +formusu.usuSel.value;
+  			window.location.href=destino;
 	    }
  	}
    
@@ -58,19 +58,16 @@
 	</div>
 	<div class="row">	
 	<nav id="nav" class="col-11">
-		<ul>
-			<li><a href="/cuestionariosUDT44/login.do?logoff=S">Logoff</a></li>			
+		<ul>			
 			<li><a href="/cuestionariosUDT44/listarcuestionario.do">Listar cuestionarios</a></li>
 			<li><a href="/cuestionariosUDT44/crearcuestionario.do">Crear cuestionario</a></li>			
 			<%if (((Integer)request.getSession().getAttribute("superusuario")).intValue()==1)	
-			out.println("<li><a href='/cuestionariosUDT44/adminusuario.do'>Administrar usuarios</a></li>"); %>
+			out.println("<li><a class='activado' href='/cuestionariosUDT44/adminusuario.do'>Administrar usuarios</a></li>"); %>
 		</ul>
 	</nav>	
 	<nav id="nav" class="col-1">
-		<ul>
-			<li>${sessionScope.usuario}&nbsp;&nbsp;&nbsp;</li>		
-		</ul>
-	</nav>	
+		${sessionScope.usuario}&nbsp;&nbsp;<img alt="LogOut" src='assets/logout.jpg' width='25px' height='25px' onclick="window.location.href='/cuestionariosUDT44/login.do?logoff=S'"/>&nbsp;&nbsp;		
+	</nav>		
 	</div>
 		<bordefila class="row">			
 			<div class="col-6" style="background-color:white;">
@@ -120,12 +117,13 @@
 					out.println("<input type='submit' value='Borrar' class='btn btn-danger' name='borrarusuario' onclick=\"return confirm('¿Estás seguro de eliminar al usuario seleccionado?')\"/>");
 				}
 				%>
+				</html:form>
 			</div>
 			<%@ include file="/usuario/listadousuarios.jsp" %>
 			
 			
 		</bordefila>	
-	</html:form>	
+		
 	
 	
 	

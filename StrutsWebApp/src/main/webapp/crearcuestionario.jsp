@@ -63,8 +63,7 @@
 	</div>
 	<div class="row">	
 	<nav id="nav" class="col-11">
-		<ul>
-			<li><a href="/cuestionariosUDT44/login.do?logoff=S">Logoff</a></li>			
+		<ul>						
 			<li><a href="/cuestionariosUDT44/listarcuestionario.do">Listar cuestionarios</a></li>
 			<li><a class="activado">Crear cuestionario</a></li>
 			<%if (((Integer)request.getSession().getAttribute("superusuario")).intValue()==1)	
@@ -72,9 +71,7 @@
 		</ul>
 	</nav>	
 	<nav id="nav" class="col-1">
-		<ul>
-			<li>${sessionScope.usuario}&nbsp;&nbsp;&nbsp;</li>		
-		</ul>
+		${sessionScope.usuario}&nbsp;&nbsp;<img alt="LogOut" src='assets/logout.jpg' width='25px' height='25px' onclick="window.location.href='/cuestionariosUDT44/login.do?logoff=S'"/>&nbsp;&nbsp;		
 	</nav>	
 	</div>
 		<bordefila class="row">			

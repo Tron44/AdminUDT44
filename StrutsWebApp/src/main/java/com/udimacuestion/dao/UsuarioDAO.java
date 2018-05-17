@@ -209,6 +209,8 @@ public class UsuarioDAO {
 				tablaUsuario = new TablaUsuario();
 				tablaUsuario.setIdUsuario(rs.getInt("idUsuario"));
 				tablaUsuario.setUsuario(rs.getString("nombreUsuario"));
+				tablaUsuario.setEmail(rs.getString("emailUsuario"));
+				tablaUsuario.setSuperUsuario(rs.getInt("superUsuario"));
 				listaUsuario.add(tablaUsuario);
 			}
 

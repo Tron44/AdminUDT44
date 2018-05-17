@@ -35,6 +35,9 @@ public class UsuarioAction extends Action {
 	public String controlEntrada(ActionForm form, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		tablaUsuario = new TablaUsuario();
+		
+		//se ejecuta el listado de usuarios para dejarlo en sesión y mostrarlo posteriormente.
+		listadoUsuarios();
 		String alta_usuario = request.getParameter("altausuario");
 		String resultado = "";
 		if (alta_usuario != null) {
@@ -68,7 +71,7 @@ public class UsuarioAction extends Action {
 			}
 		}
 
-		String usuSel = request.getParameter("usuSel");
+		String usuSel = request.getParameter("usuSel");		
 		TablaUsuario tablaUsuario = new TablaUsuario();
 		if (usuSel != null) {
 			tablaUsuario = buscarUsuario(usuSel);
@@ -76,10 +79,11 @@ public class UsuarioAction extends Action {
 				return "fallo";
 			} else {
 				sesion.setAttribute("usuSel", usuSel);
+				sesion.setAttribute("tablaUsuario", tablaUsuario);
 			}
 		}
 
-		return listadoUsuarios();
+		return "hecho";
 	}
 
 	public String altaUsuario(ActionForm form) {
