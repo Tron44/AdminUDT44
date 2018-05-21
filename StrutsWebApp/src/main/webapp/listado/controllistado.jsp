@@ -18,11 +18,11 @@
 						{
 							  out.println("<option value='" + ((TablaCuestionario)listaControles.get(x)).getIdCuestionario() + "_" + ((TablaCuestionario)listaControles.get(x)).getNombreCuestionario() +  
 									   "_" + ((TablaCuestionario)listaControles.get(x)).getPublicacion() + "' selected>");
-							  out.println("" + ((TablaCuestionario)listaControles.get(x)).getNombreCuestionario() + "</option>");  
+							  out.println("" + ((TablaCuestionario)listaControles.get(x)).getNombreCuestionario() + " (" + ((TablaCuestionario)listaControles.get(x)).getDescCuestionario()+ ")</option>");  
 						  }else{
 							  out.println("<option value='" + ((TablaCuestionario)listaControles.get(x)).getIdCuestionario() + "_"  + ((TablaCuestionario)listaControles.get(x)).getNombreCuestionario() +
 									  "_" + ((TablaCuestionario)listaControles.get(x)).getPublicacion() + "'>");
-							  out.println("" + ((TablaCuestionario)listaControles.get(x)).getNombreCuestionario() + "</option>");
+							  out.println("" + ((TablaCuestionario)listaControles.get(x)).getNombreCuestionario() + " (" + ((TablaCuestionario)listaControles.get(x)).getDescCuestionario()+ ")</option>");
 						  }
 					}				
 					out.println("</select></div>");

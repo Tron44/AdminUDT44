@@ -1,6 +1,9 @@
 package com.udimacuestion.struts.action;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
@@ -38,36 +42,65 @@ public class CargarCuestionarioAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		sesion = request.getSession();
+		request.setCharacterEncoding("UTF-8");
 
 		if (request.getParameter("carga") != null) {
 			sesion.setAttribute("procesado", "");
 			return mapping.findForward("hecho");
 		} else {
-			return mapping.findForward(tratarFichero(form));
+			return mapping.findForward(tratarFichero(form, request));
 		}
 	}
 
 	
 
-	public String tratarFichero(ActionForm form) throws Exception {
+	public String tratarFichero(ActionForm form, HttpServletRequest request) throws Exception {
 
 		primeraVez = true;
 		Integer gradoIns = (Integer) sesion.getAttribute("gradoSel");
 		Integer asignaturaIns = (Integer) sesion.getAttribute("asignaturaSel");
 		String nombreControlIns = (String) sesion.getAttribute("nombreControl");
+		String descControlIns = (String) sesion.getAttribute("descControl");
+		System.out.println(descControlIns);
 		int idCuestionario = 0;
 		if (form instanceof CargarCuestionarioForm) {
 			CargarCuestionarioForm theForm = (CargarCuestionarioForm) form;
-
+			
 			// mostramos los parametros del fichero
 			FormFile theFile = theForm.getTheFile();
 			int fileSize = theFile.getFileSize();
+			byte[] recuperadoFic = theFile.getFileData();
+			
+			//theFile.setContentType("text/html; charset=UTF-8");
+			FileOutputStream out = new FileOutputStream("archivo.txt");
+			
+			out.write(recuperadoFic);
+			out.flush();
+			out.close();
+			
+			String cadena;
+		      FileReader f = new FileReader("archivo.txt");
+		      BufferedReader b = new BufferedReader(f);
+		      while((cadena = b.readLine())!=null) {
+		    	  cadena.getBytes("UTF-8");
+		          //System.out.println(cadena);
+		      }
+		      b.close();	
+			
+		      System.out.println("*************************************");
+			
 			String data = "";
-
 			try {
 				// guarda los datos del fichero
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				InputStream stream = theFile.getInputStream();
+				String ss = IOUtils.toString(stream, "UTF-8");
+				//System.out.println("*************" + ss);
+				
+				ss = ss + "//: 0000000  name: 00 Â¿00?\n" + 
+						"::00 00::[html]00{\n" + 
+						"	~00\n" + 						
+						"}";
 
 				// solo si el archivo es de menos de 4MB
 				if (fileSize < (4 * 1024000)) {
@@ -76,15 +109,17 @@ public class CargarCuestionarioAction extends Action {
 					while ((bytesLeidos = stream.read(buffer, 0, 8192)) != -1) {
 						baos.write(buffer, 0, bytesLeidos);
 					}
-					data = new String(baos.toByteArray());
+					
+					data = new String(baos.toByteArray(), "UTF-8");
+					//data = new String(baos.toByteArray());
 					
 
 					// antes de tratar la linea de las preguntas y respuestas, grabo el cuestionario
 					cdaog = new CuestionarioDAOGrabar();
 					idCuestionario = cdaog.insertarSoloCuestionario(gradoIns + "", asignaturaIns + "",
-							nombreControlIns);
+							nombreControlIns, descControlIns);
 					// int vuelta=0;
-					Scanner scanner = new Scanner(data);
+					Scanner scanner = new Scanner(ss);
 					while (scanner.hasNextLine()) {
 						String line = scanner.nextLine();
 						tratarlinea(line, idCuestionario);
@@ -93,7 +128,7 @@ public class CargarCuestionarioAction extends Action {
 					scanner.close();
 				} else {
 					data = new String(
-							"Fichero de más de 4MB: no pudo gestionarse. Tamano del fichero: " + fileSize + "  bytes.");
+							"Fichero de mÃ¡s de 4MB: no pudo gestionarse. Tamano del fichero: " + fileSize + "  bytes.");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -112,7 +147,7 @@ public class CargarCuestionarioAction extends Action {
 
 		try {
 
-			// llegados a este punto se ha grabado el cuestionario, ahora se grabarán las
+			// llegados a este punto se ha grabado el cuestionario, ahora se grabarÃ¡n las
 			// preguntas y respuestas de ese cuestionario
 			if (linea == null || linea.equals("")) {
 
@@ -167,9 +202,9 @@ public class CargarCuestionarioAction extends Action {
 										pregunta = pregunta.substring(0, pregunta.length() - 1);
 									// pregunta = pregunta.replaceAll("\\:", ":");
 									System.out.println("pregunta recuperada=" + pregunta);
-									// ::[html]<p>¿Q...
-									// ::[moodle]<p>¿Q
-									// ::<p>¿Q
+									// ::[html]<p>Â¿Q...
+									// ::[moodle]<p>Â¿Q
+									// ::<p>Â¿Q
 									// ojo. tengo que tratar la \: que es : y que puede ir lo siguiente \:::
 									textoPregunta = convertFromUTF8(pregunta.substring(0));
 									System.out.println("textoPregunta=" + textoPregunta);
@@ -267,12 +302,12 @@ public class CargarCuestionarioAction extends Action {
 	}
 
 	public String convertFromUTF8(String s) {
-		String out = null;
-		try {
+		String out = s;
+		/*try {
 			out = new String(s.getBytes("ISO-8859-1"), "UTF-8");
 		} catch (java.io.UnsupportedEncodingException e) {
 			return null;
-		}
+		}*/
 		return out;
 	}
 }

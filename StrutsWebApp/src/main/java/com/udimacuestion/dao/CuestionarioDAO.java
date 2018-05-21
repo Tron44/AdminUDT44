@@ -172,7 +172,7 @@ public class CuestionarioDAO {
 		TablaCuestionario tablaCuestionario = null;
 		try {
 			stmt = conexion.prepareStatement(
-					"select idCuestionario, nombreCuestionario, publicacion, idAsignatura from cuestionarioudima.cuestionario\r\n"
+					"select idCuestionario, nombreCuestionario, publicacion, idAsignatura, descCuestionario from cuestionarioudima.cuestionario\r\n"
 							+ "where idAsignatura = " + asignaturaSel);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -181,6 +181,7 @@ public class CuestionarioDAO {
 				tablaCuestionario.setNombreCuestionario(rs.getString("nombreCuestionario"));
 				tablaCuestionario.setPublicacion(rs.getInt("publicacion"));
 				tablaCuestionario.setIdAsignatura(rs.getInt("idAsignatura"));
+				tablaCuestionario.setDescCuestionario(rs.getString("descCuestionario"));
 				listaCuestionarios.add(tablaCuestionario);
 			}
 

@@ -14,6 +14,7 @@ public class TablaCuestionario implements Serializable {
 
 	// atributos del objeto de cuestionario. TablaCuestionario
 	private String nombreCuestionario = null;
+	private String descCuestionario = null;
 	private int idCuestionario = 0;
 	private int publicacion = 0;
 	private int idAsignatura = 0;
@@ -24,6 +25,14 @@ public class TablaCuestionario implements Serializable {
 
 	public void setNombreCuestionario(String nombreCuestionario) {
 		this.nombreCuestionario = nombreCuestionario;
+	}
+	
+	public String getDescCuestionario() {
+		return descCuestionario;
+	}
+
+	public void setDescCuestionario(String descCuestionario) {
+		this.descCuestionario = descCuestionario;
 	}
 
 	public int getIdCuestionario() {

@@ -155,11 +155,12 @@ public class CrearPreguntaRespuestaAction extends Action {
 			Integer gradoIns = (Integer) sesion.getAttribute("gradoSel");
 			Integer asignaturaIns = (Integer) sesion.getAttribute("asignaturaSel");
 			String nombreControlIns = (String) sesion.getAttribute("nombreControl");
+			String descControlIns = (String) sesion.getAttribute("descControl");
 			TablaPregunta tablaPreguntaIns = tablaPregunta;
 			cuestionarioDAOGrabar = new CuestionarioDAOGrabar();
 			try {
 				resultadoIns = cuestionarioDAOGrabar.insertarCuestionario(gradoIns.toString(), asignaturaIns.toString(),
-						nombreControlIns, tablaPreguntaIns);
+						nombreControlIns, descControlIns, tablaPreguntaIns);
 			} catch (DaoException | SQLException e) {
 				e.printStackTrace();
 			}

@@ -36,9 +36,9 @@
    		window.location.href=destino;
 	    }
   }
-   function nombreControl(valorTexto) {
-	   if (valorTexto != null && valorTexto != 'Introduce el nombre del control'){
-		    destino='/cuestionariosUDT44/crearcuestionario.do?nombreControl=' + valorTexto;
+   function nombreControl(valorTexto, valorTextoD) {
+	   if ((valorTexto != null && valorTexto != 'Introduce el nombre del control') || (valorTextoD != null && valorTextoD != 'Introduce la descripción del control (máx 100)')){
+		    destino='/cuestionariosUDT44/crearcuestionario.do?nombreControl=' + valorTexto+'&descControl=' + valorTextoD;
 	  		window.location.href=destino;
    
 	   }

@@ -50,10 +50,11 @@ public class CrearCuestionarioAction extends Action {
 			return asignaturaSeleccionadaAltaControl(asignaturaSel);
 		}
 		String nombreControl = (String) request.getParameter("nombreControl");
+		String descControl = (String) request.getParameter("descControl");
 		if (nombreControl != null) {
 			// se ha seleccionado un nombre del control ya se puede habilitar la zona de
 			// preguntas
-			return nombreControlSeleccionadoAltaPregunta(nombreControl);
+			return nombreControlSeleccionadoAltaPregunta(nombreControl, descControl);
 		}
 
 		/*
@@ -118,7 +119,7 @@ public class CrearCuestionarioAction extends Action {
 
 	// se ha seleccionado una asignatura, se puede proceder a la visualización
 	// del campo control para darlo de alta
-	public String nombreControlSeleccionadoAltaPregunta(String nombreControl) {
+	public String nombreControlSeleccionadoAltaPregunta(String nombreControl, String descControl) {
 		sesion.setAttribute("textopregunta", null);
 		sesion.setAttribute("tipopregunta", null);
 		sesion.setAttribute("numerorespuestas", null);
@@ -127,6 +128,7 @@ public class CrearCuestionarioAction extends Action {
 		// dejo en sesion el gradoseleccionado y busco de este grado las asignaturas
 		// sesion.setAttribute("listaAsignaturas", null);
 		sesion.setAttribute("nombreControl", nombreControl);
+		sesion.setAttribute("descControl", descControl);
 		return "nombrecontrolsel";
 	}
 

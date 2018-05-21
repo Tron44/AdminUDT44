@@ -49,15 +49,17 @@
 	</nav>	
 	</div>
 		<bordefila class="row">			
-			<div class="col-2" style="background-color:white;">&nbsp;</div>
-			<div class="col-10 align-self-center" style="background-color:white;">	
+			
+			<div class="col-12 align-self-center" style="background-color:white;">
 				<br>
-				<h1>Bienvenido ${sessionScope.usuario}</h1>						
-				<br>
-				<a href="/cuestionariosUDT44/listarcuestionario.do" class="btn btn-primary">Listar cuestionarios</a>
-				<a href="/cuestionariosUDT44/crearcuestionario.do" class="btn btn-primary">Crear cuestionario</a>				
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<img src='assets/listaCue.jpg' style="vertical-align: top;"  width='125px' height='125px' onclick="window.location.href='/cuestionariosUDT44/listarcuestionario.do'"/>&nbsp;&nbsp;<a href="/cuestionariosUDT44/listarcuestionario.do">Listar cuestionarios</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;				
+				<img src='assets/adminCue.jpg' style="vertical-align: top;" width='125px' height='125px' onclick="window.location.href='/cuestionariosUDT44/crearcuestionario.do'"/>&nbsp;&nbsp;<a href="/cuestionariosUDT44/crearcuestionario.do">Crear cuestionario</a>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+								
 				<%if (((Integer)request.getSession().getAttribute("superusuario")).intValue()==1)	
-			out.println("<a href='/cuestionariosUDT44/adminusuario.do' class='btn btn-primary'>Administrar usuarios</a>"); %>
+			out.println("<img src='assets/adminUsu.jpg' style='vertical-align: top;'  width='125px' height='125px' onclick=\"window.location.href='/cuestionariosUDT44/adminusuario.do'\"/>&nbsp;&nbsp;<a href='/cuestionariosUDT44/adminusuario.do'>Administrar usuarios</a>"); %>
 				
 				<br><br><br>
 			</div>
