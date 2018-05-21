@@ -19,11 +19,11 @@
 						if (asignaturaSeleccionada == ((TablaAsignatura)listaAsignaturas.get(x)).getIdAsignatura()){
 							  out.println("<option value='" + ((TablaAsignatura)listaAsignaturas.get(x)).getIdAsignatura() + "'" 
 									  +  " selected>");
-							  out.println("" + ((TablaAsignatura)listaAsignaturas.get(x)).getNombreAsignatura() + "</option>");  
+							  out.println("" + ((TablaAsignatura)listaAsignaturas.get(x)).getNombreAsignatura() + " (" + ((TablaAsignatura)listaAsignaturas.get(x)).getNumControles() + ")</option>");  
 						  }else{
 							  out.println("<option value='" + ((TablaAsignatura)listaAsignaturas.get(x)).getIdAsignatura() + "'" 
 									  +  ">");
-							  out.println("" + ((TablaAsignatura)listaAsignaturas.get(x)).getNombreAsignatura() + "</option>");
+							  out.println("" + ((TablaAsignatura)listaAsignaturas.get(x)).getNombreAsignatura() + " (" + ((TablaAsignatura)listaAsignaturas.get(x)).getNumControles() + ")</option>");
 						  }
 					}				
 					out.println("</select></div>");

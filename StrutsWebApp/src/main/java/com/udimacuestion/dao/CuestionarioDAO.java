@@ -89,7 +89,7 @@ public class CuestionarioDAO {
 	 * @throws DaoException
 	 * @throws SQLException
 	 */
-	public ArrayList<TablaAsignatura> getAsignaturasByGrado(int gradoSel, int tipo, int idUsuario)
+	public ArrayList<TablaAsignatura> getAsignaturasByGrado(int gradoSel, int tipo)
 			throws DaoException, SQLException {
 
 		// Si no hemos obtenido la conexion devolvemos una excepcion (DaoExcepcion)
@@ -104,12 +104,14 @@ public class CuestionarioDAO {
 		try {
 			if (tipo == 1) {
 				stmt = conexion.prepareStatement(
-						"select idAsignatura, nombreAsignatura, codigoAsignatura, idGrado from cuestionarioudima.asignatura\r\n"
+						"select idAsignatura, nombreAsignatura, codigoAsignatura, idGrado, 0 from cuestionarioudima.asignatura\r\n"
 								+ "where idGrado = " + gradoSel);
 			} else {
-				stmt = conexion.prepareStatement(
-						"select idAsignatura, nombreAsignatura, codigoAsignatura, idGrado from cuestionarioudima.asignatura\r\n"
-								+ "where idGrado = " + gradoSel + " and idProfesor=" + idUsuario);
+				stmt = conexion.prepareStatement("select asig.idAsignatura, asig.nombreAsignatura, asig.codigoAsignatura, asig.idGrado, count(*)\r\n" + 
+						"				from cuestionarioudima.asignatura asig, cuestionarioudima.cuestionario cues where asig.idGrado = " + gradoSel + "\r\n" + 
+						"				and asig.idAsignatura IN (select  cues2.idAsignatura from cuestionarioudima.cuestionario cues2 \r\n" + 
+						"				where cues.idAsignatura=cues2.idAsignatura) \r\n" + 
+						"				group by asig.idAsignatura, asig.nombreAsignatura, asig.codigoAsignatura, asig.idGrado;");
 			}
 
 			ResultSet rs = stmt.executeQuery();
@@ -119,6 +121,7 @@ public class CuestionarioDAO {
 				tablaAsignatura.setNombreAsignatura(rs.getString("nombreAsignatura"));
 				tablaAsignatura.setCodigoAsignatura(rs.getString("codigoAsignatura"));
 				tablaAsignatura.setIdGrado(rs.getInt("idGrado"));
+				tablaAsignatura.setNumControles(rs.getInt(5));
 				listaAsignaturas.add(tablaAsignatura);
 			}
 
@@ -149,6 +152,8 @@ public class CuestionarioDAO {
 
 		return listaAsignaturas;
 	}
+	
+	
 
 	/**
 	 * recuperación de cuestionarios por asignatura

@@ -29,7 +29,7 @@
 						out.println("class='form-control' value='Introduce el nombre del control'>");
 						out.println("<br>");
 						out.println("<label>Descripci&oacute;n del control</label><br>");				
-						out.println("<input type='text' size='50' id='descC'");
+						out.println("<input type='text' size='50' maxlength='100' id='descC'");
 						out.println("class='form-control' value='Introduce la descripción del control (máx 100)' onblur='nombreControl(nombreC.value, descC.value)'>");
 						out.println("<br><br>");	
 						out.println("</div>");

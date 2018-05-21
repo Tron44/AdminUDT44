@@ -131,9 +131,27 @@ public class ListarCuestionarioAction extends Action {
 			return "fallo";
 		} else {
 			sesion.setAttribute("listaGrados", listaGrados);
+			sesion.setAttribute("listaAsignaturas", null);
+			sesion.setAttribute("listaControles", null);
+			sesion.setAttribute("asignaturaSel", null);
+			sesion.setAttribute("listaPreguntasRespuestas", null);
+			
+			Integer gradoSeleccionado = (Integer)request.getSession().getAttribute("gradoSel");
+
+			
+			//sesion.setAttribute("preguntarespuestaguardada", 0);
+			//sesion.setAttribute("opcionlistado", "si");
+			if (gradoSeleccionado !=null) gradoSeleccionadoBusquedaAsig(gradoSeleccionado+"");
+			
+			
 			return "hecho";
 		}
 	}
+	
+	
+	
+	
+	
 
 	// se ha seleccionado un grado, busqueda asignaturas
 	public String gradoSeleccionadoBusquedaAsig(String gradoSel) {
@@ -152,9 +170,7 @@ public class ListarCuestionarioAction extends Action {
 		cdao = new CuestionarioDAO();
 		ArrayList<TablaAsignatura> listaAsignaturas = null;
 		try {
-			listaAsignaturas = cdao.getAsignaturasByGrado(Integer.parseInt(gradoSel),
-					((Integer) sesion.getAttribute("superusuario")).intValue(),
-					((Integer) sesion.getAttribute("idusuario")).intValue());
+			listaAsignaturas = cdao.getAsignaturasByGrado(Integer.parseInt(gradoSel), 2);
 		} catch (NumberFormatException | DaoException | SQLException e) {
 			e.printStackTrace();
 		}

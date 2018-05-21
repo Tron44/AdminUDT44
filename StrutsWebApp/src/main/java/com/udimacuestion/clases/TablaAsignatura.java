@@ -16,6 +16,8 @@ public class TablaAsignatura implements Serializable {
 	private String nombreAsignatura = null;
 	private String codigoAsignatura = null;
 	private int idGrado = 0;
+	
+	private int numControles = 0;
 
 	public int getIdAsignatura() {
 		return idAsignatura;
@@ -47,6 +49,17 @@ public class TablaAsignatura implements Serializable {
 
 	public void setIdGrado(int idGrado) {
 		this.idGrado = idGrado;
+	}
+	
+	
+	
+
+	public int getNumControles() {
+		return numControles;
+	}
+
+	public void setNumControles(int numControles) {
+		this.numControles = numControles;
 	}
 
 	@Override
