@@ -56,6 +56,20 @@ public class CrearCuestionarioAction extends Action {
 			// preguntas
 			return nombreControlSeleccionadoAltaPregunta(nombreControl, descControl);
 		}
+		
+		//opción de añadido pregunta desde el listado.
+		String addpreg = (String) request.getParameter("addpreg");
+		if (addpreg != null) {
+			cdao = new CuestionarioDAO();
+			ArrayList<TablaGrado> listaGrados = cdao.getGrados();		
+
+			if (listaGrados == null) {
+				return "fallo";
+			} else {
+				sesion.setAttribute("listaGrados", listaGrados);
+				return "hecho";
+			}
+		}
 
 		/*
 		 * Para crear un cuestionario es preciso primero conseguir el grado y la

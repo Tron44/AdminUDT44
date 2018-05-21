@@ -18,7 +18,7 @@
 				if (controlSelInt2 != null) controlSeleccionado2 = controlSelInt2.intValue();
 				if (listaPreguntasRespuestas != null){
 					out.println("<div class='col-6' style='background-color:#EFF2FB;'>&nbsp;<p>");
-					
+					out.println("<b>Cuestionario con " + listaPreguntasRespuestas.size() + " preguntas.</b><p>");
 					if(publicadoControl.equals("0")){
 						out.println("<a href='/cuestionariosUDT44/listarcuestionario.do?publicar=1' class='btn btn-success'>Publicar cuestionario</a>");
 					}else{
@@ -98,7 +98,7 @@
 					//request.getSession().setAttribute("nombreControl"));
 					%>	
 					<p>			
-					<a href="/cuestionariosUDT44/crearcuestionario.do" class="btn btn-primary">Añadir Pregunta</a>					
+					<a href="/cuestionariosUDT44/crearcuestionario.do?addpreg=S" class="btn btn-primary">Añadir Pregunta</a>					
 					<input type="submit" value='Eliminar Pregunta' class="btn btn-primary" name="eliminarpregunta" onclick="return confirm('¿Estás seguro de eliminar la pregunta seleccionada?')"/>
 					<input type="submit" value='Modificar Pregunta' class="btn btn-primary" name="modificarpregunta">
 					
