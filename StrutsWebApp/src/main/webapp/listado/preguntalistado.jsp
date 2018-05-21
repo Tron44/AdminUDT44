@@ -43,7 +43,7 @@
 								for(int y=0;y<listaRespuestas.size();y++) {
 									tablaRespuesta = (TablaRespuesta)listaRespuestas.get(y);
 									esValidaRespuesta = tablaRespuesta.isValido();
-									if (tipoPregunta.equals("Incluyente")){
+									if (tipoPregunta.equals("1")){
 										if(esValidaRespuesta){
 											out.print("<input type='checkbox' name='respuestaCheck' value='ok" + y + "' checked>");
 											
@@ -76,7 +76,7 @@
 							for(int y=0;y<listaRespuestas.size();y++) {
 								tablaRespuesta = (TablaRespuesta)listaRespuestas.get(y);
 								esValidaRespuesta = tablaRespuesta.isValido();
-								if (tipoPregunta.equals("Incluyente")){
+								if (tipoPregunta.equals("1")){
 									if(esValidaRespuesta){
 										out.print("<input type='checkbox' name='respuestaCheck" + tablaPregunta.getIdPregunta() + "' value='ok' checked disabled>" + tablaRespuesta.getTextoRespuesta()+ "<br>");
 									}else{

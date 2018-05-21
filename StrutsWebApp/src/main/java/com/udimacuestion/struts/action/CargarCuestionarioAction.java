@@ -268,9 +268,9 @@ public class CargarCuestionarioAction extends Action {
 										tablaRespuesta.setValido(valido);
 										listaRespuestas.add(tablaRespuesta);
 										if (contadorValidos > 1) {
-											tablaPregunta.setTipoPregunta("Incluyente");
+											tablaPregunta.setTipoPregunta("1");
 										} else {
-											tablaPregunta.setTipoPregunta("Excluyente");
+											tablaPregunta.setTipoPregunta("0");
 										}
 										tablaPregunta.setNumeroRespuestas("" + contadorRespuestas);
 										tablaPregunta.setListaRespuestas(listaRespuestas);

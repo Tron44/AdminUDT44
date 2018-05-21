@@ -20,7 +20,7 @@
 		if(listaRespuestas == null || listaRespuestas.size() ==0){
 			for (int i=0; i <numRes; i++){
 				int j=i+1;%>
-				<%if (tipoPreg.equals("Excluyente")){
+				<%if (tipoPreg.equals("0")){
 					out.print("<input type='radio'  name='respuestaCheck' value='ok" + i + "'> Texto de la respuesta " + j);
 				}else{
 					out.print("<input type='checkbox'   name='respuestaCheck' value='ok" + i + "'> Texto de la respuesta " + j);
@@ -30,7 +30,7 @@
 		}else{
 			for (int i=0; i <numRes; i++){
 				int j=i+1;%>
-				<%if (tipoPreg.equals("Excluyente")){
+				<%if (tipoPreg.equals("0")){
 					if (((TablaRespuesta)listaRespuestas.get(i)).isValido()){
 						out.print("<input type='radio'  name='respuestaCheck' value='ok" + i + "' checked> Texto de la respuesta " + j);
 					}

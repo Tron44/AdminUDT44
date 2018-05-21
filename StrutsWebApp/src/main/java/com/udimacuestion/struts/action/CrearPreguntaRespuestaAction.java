@@ -125,7 +125,7 @@ public class CrearPreguntaRespuestaAction extends Action {
 		if (contadorRespuestas == numeroRespuestas) {
 			// sesion.setAttribute("preguntarespuestaguardada", 0);
 			sesion.setAttribute("textopregunta", null);
-			sesion.setAttribute("tipopregunta", "Incluyente");
+			sesion.setAttribute("tipopregunta", "1");
 			sesion.setAttribute("numerorespuestas", "1");
 			sesion.setAttribute("listaRespuestas", null);
 			Integer primeraVezInsert = (Integer) sesion.getAttribute("preguntarespuestaguardada");
