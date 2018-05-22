@@ -6,13 +6,18 @@
 			
 			<%
 			String textoPregunta = ((String)request.getSession().getAttribute("textopregunta"));
-			String tipoPregunta = ((String)request.getSession().getAttribute("tipopregunta"));
+			String tipoPregunta = ((String)request.getSession().getAttribute("tipopregunta"));			
 			String numeroRespuestas = ((String)request.getSession().getAttribute("numerorespuestas"));
 			Integer preguntarespuestaguardada = (Integer) request.getSession().getAttribute("preguntarespuestaguardada");	
 			if (textoPregunta != null){				
 				out.println("<label>Texto de la pregunta</label><br>");			
 				out.println("<textarea class='form-control' name='textoPregunta' disabled>" + textoPregunta + "</textarea>");
-				out.println(tipoPregunta);	
+				if (tipoPregunta.equals("1")){
+					out.println("Incluyente");	
+				}else{
+					out.println("Excluyente");
+				}
+					
 				out.println("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;N&uacute;mero de respuestas: " + numeroRespuestas);
 				out.println("<br><br>");%>
 				<%@ include file="/creacion/respuesta.jsp"%>

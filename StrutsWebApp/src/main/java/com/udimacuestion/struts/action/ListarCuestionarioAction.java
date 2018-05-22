@@ -110,9 +110,10 @@ public class ListarCuestionarioAction extends Action {
 			// publicación de cuestionario
 			
 			String campotextoenvionuevo = (String) request.getParameter("campotexto");
+			String campotextoenvionuevoDesc = (String) request.getParameter("campotextoDesc");
 			String controlSeleccionadoCambio = (String) request.getParameter("controlSeleccionado");
 
-			return modificarCuestionario(controlSeleccionadoCambio, campotextoenvionuevo);
+			return modificarCuestionario(controlSeleccionadoCambio, campotextoenvionuevo, campotextoenvionuevoDesc);
 		}
 
 		/*
@@ -234,9 +235,11 @@ public class ListarCuestionarioAction extends Action {
 		String numeroControl = st.nextToken();
 		String nombreControl = st.nextToken();
 		String publicadoControl = st.nextToken();
+		String descControl = st.nextToken();
 
 		sesion.setAttribute("controlSel", Integer.parseInt(numeroControl));
 		sesion.setAttribute("nombreControl", nombreControl);
+		sesion.setAttribute("descControl", descControl);
 
 		// consigo el valor de publicación del cuestionario.
 		cdao = new CuestionarioDAO();
@@ -422,12 +425,12 @@ public class ListarCuestionarioAction extends Action {
 	}
 
 	// se ha seleccionadoel la opción de borrado de cuestionarios
-	public String modificarCuestionario(String cuestionarioMod, String campotextonuevo) {
+	public String modificarCuestionario(String cuestionarioMod, String campotextonuevo, String campotextonuevoDesc) {
 		System.out.println("*********************cuestionarioMod********" + cuestionarioMod);
 
 		cdaograbar = new CuestionarioDAOGrabar();
 		try {
-			cdaograbar.modificarCuestionario(cuestionarioMod, campotextonuevo);
+			cdaograbar.modificarCuestionario(cuestionarioMod, campotextonuevo, campotextonuevoDesc);
 		} catch (DaoException | SQLException e) {
 			e.printStackTrace();
 		}

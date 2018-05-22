@@ -540,7 +540,7 @@ public class CuestionarioDAOGrabar {
 	 * @throws DaoException
 	 * @throws SQLException
 	 */
-	public int modificarCuestionario(String cuestionarioMod, String camponuevo) throws DaoException, SQLException {
+	public int modificarCuestionario(String cuestionarioMod, String camponuevo, String camponuevoDesc) throws DaoException, SQLException {
 		// Si no hemos obtenido la conexion devolvemos una excepcion (DaoExcepcion)
 		if (conexion == null) {
 			throw new DaoException(10, NOMBREDAO, "modificarCuestionario", "getConexion", "conn",
@@ -549,8 +549,13 @@ public class CuestionarioDAOGrabar {
 		PreparedStatement stmt = null;
 		int resultadoUpdate = 0;
 		try {
-			stmt = conexion.prepareStatement("UPDATE `cuestionarioudima`.`cuestionario` SET `nombreCuestionario` = '"
-					+ camponuevo.replaceAll("'", "\"") + "' WHERE `idCuestionario` =" + cuestionarioMod);			
+			stmt = conexion.prepareStatement("UPDATE `cuestionarioudima`.`cuestionario` "
+					+ "SET `nombreCuestionario` = '"
+					+ camponuevo.replaceAll("'", "\"") 
+					+ "', `descCuestionario` = '"
+					+ camponuevoDesc.replaceAll("'", "\"")
+					
+					+ "' WHERE `idCuestionario` =" + cuestionarioMod);			
 			resultadoUpdate = stmt.executeUpdate();
 		} catch (SQLException sqle) {			
 			sqle.printStackTrace();
