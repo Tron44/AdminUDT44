@@ -61,7 +61,7 @@
 		
 	</div>
 	<div class="row">	
-	<nav id="nav" class="col-11">
+	<nav id="nav" class="col-10">
 		<ul>						
 			<li><a class="activado">Listar cuestionarios</a></li>
 			<li><a href="/cuestionariosUDT44/crearcuestionario.do">Crear cuestionario</a></li>			
@@ -70,8 +70,11 @@
 		</ul>
 	</nav>
 	<nav id="nav" class="col-1">
-		${sessionScope.usuario}&nbsp;&nbsp;<img alt="LogOut" src='assets/logout.jpg' width='25px' height='25px' onclick="window.location.href='/cuestionariosUDT44/login.do?logoff=S'"/>&nbsp;&nbsp;		
+		${sessionScope.usuario}		
 	</nav>	
+	<nav id="nav" class="col-1">
+		<img alt="LogOut" src='assets/logout.jpg' width='25px' height='25px' onclick="window.location.href='/cuestionariosUDT44/login.do?logoff=S'"/>	
+	</nav>		
 	</div>
 		<bordefila class="row">			
 			<div class="col-6" style="background-color:white;">
