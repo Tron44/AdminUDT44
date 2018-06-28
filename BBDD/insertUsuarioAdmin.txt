@@ -1,0 +1,1 @@
+INSERT INTO `cuestionarioudima`.`usuario` (`idUsuario`, `nombreUsuario`, `passwordUsuario`, `emailUsuario`, `superUsuario`) VALUES ('1', 'Tron', 'Tron', 'tron@gmail.com', '1');
