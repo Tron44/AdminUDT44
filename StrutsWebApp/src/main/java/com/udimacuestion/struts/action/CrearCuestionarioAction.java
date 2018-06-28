@@ -37,16 +37,14 @@ public class CrearCuestionarioAction extends Action {
 		if (gradoSel != null) {
 			// si se ha seleccionado un grado, hay que reiniciliar el valor de la
 			// asignatura, nombrecontrol, preguntas y respuestas
-			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera",
-			// "si");;
+			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera", "si");;
 			return gradoSeleccionadoBusquedaAsig(gradoSel);
 		}
 		String asignaturaSel = (String) request.getParameter("asignaturaSel");
 		if (asignaturaSel != null) {
 			// si se ha seleccionado un asignatura, hay que reiniciliar el valor
 			// nombrecontrol, preguntas y respuestas
-			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera",
-			// "si");;
+			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera", "si");;
 			return asignaturaSeleccionadaAltaControl(asignaturaSel);
 		}
 		String nombreControl = (String) request.getParameter("nombreControl");
@@ -90,11 +88,8 @@ public class CrearCuestionarioAction extends Action {
 			sesion.setAttribute("asignaturaSel", null);
 			sesion.setAttribute("listaPreguntasRespuestas", null);
 			
-			Integer gradoSeleccionado = (Integer)request.getSession().getAttribute("gradoSel");			
-			
+			Integer gradoSeleccionado = (Integer)request.getSession().getAttribute("gradoSel");
 			if (gradoSeleccionado !=null) gradoSeleccionadoBusquedaAsig(gradoSeleccionado+"");
-			
-			
 			return "hecho";
 		}
 
@@ -131,9 +126,7 @@ public class CrearCuestionarioAction extends Action {
 	public String asignaturaSeleccionadaAltaControl(String asignaturaSel) {		
 		sesion.setAttribute("nombreControl", null);
 		sesion.setAttribute("preguntarespuestaguardada", 0);
-
 		// dejo en sesion el gradoseleccionado y busco de este grado las asignaturas
-		// sesion.setAttribute("listaAsignaturas", null);
 		sesion.setAttribute("asignaturaSel", Integer.parseInt(asignaturaSel));
 
 		return "asignaturasel";
@@ -147,8 +140,7 @@ public class CrearCuestionarioAction extends Action {
 		sesion.setAttribute("numerorespuestas", null);
 		sesion.setAttribute("preguntarespuestaguardada", 0);
 		
-		// dejo en sesion el gradoseleccionado y busco de este grado las asignaturas
-		// sesion.setAttribute("listaAsignaturas", null);
+		// dejo en sesion el gradoseleccionado y busco de este grado las asignaturas		
 		sesion.setAttribute("nombreControl", nombreControl);
 		sesion.setAttribute("descControl", descControl);
 		return "nombrecontrolsel";

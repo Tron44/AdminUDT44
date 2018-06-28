@@ -61,7 +61,7 @@ public class CargarCuestionarioAction extends Action {
 		Integer asignaturaIns = (Integer) sesion.getAttribute("asignaturaSel");
 		String nombreControlIns = (String) sesion.getAttribute("nombreControl");
 		String descControlIns = (String) sesion.getAttribute("descControl");
-		System.out.println(descControlIns);
+		Integer idUsuario = (Integer)sesion.getAttribute("idusuario");		
 		int idCuestionario = 0;
 		if (form instanceof CargarCuestionarioForm) {
 			CargarCuestionarioForm theForm = (CargarCuestionarioForm) form;
@@ -82,12 +82,9 @@ public class CargarCuestionarioAction extends Action {
 		      FileReader f = new FileReader("archivo.txt");
 		      BufferedReader b = new BufferedReader(f);
 		      while((cadena = b.readLine())!=null) {
-		    	  cadena.getBytes("UTF-8");
-		          //System.out.println(cadena);
+		    	  cadena.getBytes("UTF-8");		         
 		      }
 		      b.close();	
-			
-		      System.out.println("*************************************");
 			
 			String data = "";
 			try {
@@ -95,8 +92,7 @@ public class CargarCuestionarioAction extends Action {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				InputStream stream = theFile.getInputStream();
 				String ss = IOUtils.toString(stream, "UTF-8");
-				//System.out.println("*************" + ss);
-				
+				//control de almacenar la última pregunta
 				ss = ss + "//: 0000000  name: 00 Â¿00?\n" + 
 						"::00 00::[html]00{\n" + 
 						"	~00\n" + 						
@@ -111,32 +107,27 @@ public class CargarCuestionarioAction extends Action {
 					}
 					
 					data = new String(baos.toByteArray(), "UTF-8");
-					//data = new String(baos.toByteArray());
-					
 
 					// antes de tratar la linea de las preguntas y respuestas, grabo el cuestionario
 					cdaog = new CuestionarioDAOGrabar();
 					idCuestionario = cdaog.insertarSoloCuestionario(gradoIns + "", asignaturaIns + "",
-							nombreControlIns, descControlIns);
-					// int vuelta=0;
+							nombreControlIns, idUsuario.intValue(), descControlIns);					
 					Scanner scanner = new Scanner(ss);
 					while (scanner.hasNextLine()) {
 						String line = scanner.nextLine();
 						tratarlinea(line, idCuestionario);
-						// vuelta++;
 					}
 					scanner.close();
 				} else {
 					data = new String(
-							"Fichero de mÃ¡s de 4MB: no pudo gestionarse. Tamano del fichero: " + fileSize + "  bytes.");
+							"Fichero de mas de 4MB: no pudo gestionarse. Tamano del fichero: " + fileSize + "  bytes.");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 
 		}
-		sesion.setAttribute("procesado", "pok");
-		
+		sesion.setAttribute("procesado", "pok");		
 		return "hecho";
 	}
 
@@ -150,38 +141,28 @@ public class CargarCuestionarioAction extends Action {
 			// llegados a este punto se ha grabado el cuestionario, ahora se grabarÃ¡n las
 			// preguntas y respuestas de ese cuestionario
 			if (linea == null || linea.equals("")) {
-
-				System.out.println("linea nula, no se trata ");
-
+				//linea nula, no se trata 
 			} else {
 				if (linea.substring(0, 1).equals("{")) {
-
-					System.out.println("se ha recuperado {, no se trata ");
-
+					//se ha recuperado {, no se trata
 				} else {
 					if (linea.substring(0, 1).equals("}")) {
-
-						System.out.println("se ha recuperado }, no se trata ");
+						//se ha recuperado }, no se trata
 
 					} else {
 						if (linea.substring(0, 2).equals("$C")) {
-
-							System.out.println("se ha recuperado categoria, no se trata: ");
+							//se ha recuperado categoria, no se trata
 
 						} else {
 							if (linea.substring(0, 2).equals("//")) {
-
-								System.out.println("se ha recuperado comentario, no se trata ");
+								//se ha recuperado comentario, no se trata
 
 							} else {
-								if (linea.substring(0, 2).equals("::")) {
-
-									System.out.println("tratamientoooooooooooooprimeraVez: " + primeraVez);
+								if (linea.substring(0, 2).equals("::")) {									
 									if (!primeraVez) {
 										// grabo en base de datos la pregunta con sus respuestas.
 										cdaog = new CuestionarioDAOGrabar();
 										try {
-											System.out.println("justo antes de grabar********* " + tablaPregunta);
 											cdaog.insertarPreguntaRespuesta(idCuestionario, tablaPregunta);
 										} catch (DaoException | SQLException e) {
 											e.printStackTrace();
@@ -190,36 +171,34 @@ public class CargarCuestionarioAction extends Action {
 									} else {
 										primeraVez = false;
 									}
-									// System.out.println("se ha recuperado primera linea de pregunta ::");
-									StringTokenizer st = new StringTokenizer(linea, "::");
-									System.out.println("no se utiliza este token=" + st.nextToken());
+									// 
+									//con la siguiente sentencia se elimina la posibilidad de nexttoken ::
+									linea = linea.replace("\\:", "¡");									
+									StringTokenizer st = new StringTokenizer(linea, "::");									
 									String pregunta = st.nextToken().trim();
+									//control de si el ultimo caracter de la pregunta es ;
+									//se reemplaza por : nuevamente
+									pregunta = pregunta.replace("¡", "\\:");									
 									if (pregunta.startsWith(":"))
 										pregunta = pregunta.substring(1);
 									if (pregunta.endsWith("\\"))
 										pregunta = pregunta.substring(0, pregunta.length() - 1) + ":";
 									if (pregunta.endsWith("{"))
 										pregunta = pregunta.substring(0, pregunta.length() - 1);
-									// pregunta = pregunta.replaceAll("\\:", ":");
-									System.out.println("pregunta recuperada=" + pregunta);
+									// pregunta = pregunta.replaceAll("\\:", ":");									
 									// ::[html]<p>Â¿Q...
 									// ::[moodle]<p>Â¿Q
 									// ::<p>Â¿Q
-									// ojo. tengo que tratar la \: que es : y que puede ir lo siguiente \:::
-									textoPregunta = convertFromUTF8(pregunta.substring(0));
-									System.out.println("textoPregunta=" + textoPregunta);
+									// también hay que tratar la \: que es : y que puede ir lo siguiente \:::
+									textoPregunta = convertFromUTF8(pregunta.substring(0));									
 									String tp = textoPregunta;
 									if (textoPregunta.contains("[html]"))
 										textoPregunta = tp.trim().substring(6);
 									if (textoPregunta.contains("[moodle]"))
 										textoPregunta = tp.trim().substring(8);
 									tablaPregunta = new TablaPregunta();
-
-									System.out.println("Pregunta final=" + textoPregunta);
 									tablaPregunta.setTextoPregunta(textoPregunta);
-									System.out.println(
-											"contador**********antes del set a la pregunta=" + contadorRespuestas);
-
+									
 									listaRespuestas = new ArrayList<TablaRespuesta>();
 									contadorValidos = 0;
 									contadorRespuestas = 0;
@@ -230,8 +209,7 @@ public class CargarCuestionarioAction extends Action {
 										// =[moodle]Su contenido...
 										// =[html]Su contenido...
 										// ~Su contenido con virgulilla
-										textoRespuesta = convertFromUTF8(linea.trim());
-										System.out.println("textoRespuesta=" + textoRespuesta);
+										textoRespuesta = convertFromUTF8(linea.trim());										
 										contadorRespuestas++;
 										if (textoRespuesta.substring(0, 1).equals("=")) {
 											valido = true;
@@ -245,10 +223,7 @@ public class CargarCuestionarioAction extends Action {
 											stporcentaje.nextToken();
 											textoRespuesta = stporcentaje.nextToken();
 										}
-										
-										System.out.println("textoRespuesta*******: " + textoRespuesta);
-										
-										
+																				
 										if (textoRespuesta.contains("[html]"))
 											textoRespuesta = textoRespuesta.substring(6);
 										if (textoRespuesta.contains("[moodle]"))
@@ -261,8 +236,7 @@ public class CargarCuestionarioAction extends Action {
 											textoRespuesta = stporcentaje.nextToken();
 										}										
 										
-										tablaRespuesta = new TablaRespuesta();
-										System.out.println("Respuesta final=" + textoRespuesta);
+										tablaRespuesta = new TablaRespuesta();										
 										tablaRespuesta.setTextoRespuesta(textoRespuesta);
 
 										tablaRespuesta.setValido(valido);
@@ -285,24 +259,16 @@ public class CargarCuestionarioAction extends Action {
 
 			}
 		} catch (Exception e) {
-			System.out.println("excepcion. caracter no conocido, no hago nada con la linea: " + linea);
-			// e.printStackTrace();
+			e.printStackTrace();
 		}
 
-	}
+	}	
 
-	public String convertToUTF8(String s) {
-		String out = null;
-		try {
-			out = new String(s.getBytes("UTF-8"), "ISO-8859-1");
-		} catch (java.io.UnsupportedEncodingException e) {
-			return null;
-		}
-		return out;
-	}
-
+	//este método ya no es necesario, se deja en comentario por dejar constancia de posibles problemas de encoding
+	//de preguntas y respuestas. en este caso ya no se utiliza.
 	public String convertFromUTF8(String s) {
 		String out = s;
+		//método no 
 		/*try {
 			out = new String(s.getBytes("ISO-8859-1"), "UTF-8");
 		} catch (java.io.UnsupportedEncodingException e) {

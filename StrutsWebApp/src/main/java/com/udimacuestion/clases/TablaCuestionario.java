@@ -18,6 +18,7 @@ public class TablaCuestionario implements Serializable {
 	private int idCuestionario = 0;
 	private int publicacion = 0;
 	private int idAsignatura = 0;
+	private int idProfesor=0;
 
 	public String getNombreCuestionario() {
 		return nombreCuestionario;
@@ -67,6 +68,14 @@ public class TablaCuestionario implements Serializable {
 
 	public void setListaPreguntas(ArrayList<TablaPregunta> listaPreguntas) {
 		this.listaPreguntas = listaPreguntas;
+	}
+
+	public int getIdProfesor() {
+		return idProfesor;
+	}
+
+	public void setIdProfesor(int idProfesor) {
+		this.idProfesor = idProfesor;
 	}
 
 	@Override

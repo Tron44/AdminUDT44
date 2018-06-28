@@ -27,8 +27,6 @@ public class CrearPreguntaRespuestaAction extends Action {
 	private TablaRespuesta tablaRespuesta = null;
 	private CuestionarioDAOGrabar cuestionarioDAOGrabar = null;
 
-	// CrearCuestionarioForm crearcuestionarioForm = null;
-	// TablaCuestionario tablacuestionario = null;
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {		
@@ -47,7 +45,6 @@ public class CrearPreguntaRespuestaAction extends Action {
 
 			if (tablaPregunta.getTextoPregunta() == null) {
 				return mapping.findForward("fallo");
-				// return mapping.findForward("hecho");
 			} else {
 				if (tablaPregunta.getTextoPregunta().equals("")) {
 					sesion.setAttribute("textopregunta", "texto_pregunta_defecto");
@@ -71,31 +68,26 @@ public class CrearPreguntaRespuestaAction extends Action {
 		String numRespuestas = (String) sesion.getAttribute("numerorespuestas");
 		int numeroRespuestas = 0;
 		if (numRespuestas != null)
-			numeroRespuestas = Integer.parseInt(numRespuestas);
-		
+			numeroRespuestas = Integer.parseInt(numRespuestas);		
 		String respuesta = "textoRespuesta";
 		String[] options = request.getParameterValues("respuestaCheck");
 		List<String> selectionList = null;
-		if (options != null) {
+		/*if (options != null) {
 			selectionList = Arrays.asList(options);
 			for (String o : options) {
-				System.out.println("dentro de crearpreguntarespuestarespuesta*ooooooooooooo" + o);
+				//recorrido de las opciones chequeadas
 			}
-		}
+		}*/
 		int contadorRespuestas = 0;
 		String respuestaRec = "";
 		int j = 0;
 		for (int i = 0; i < numeroRespuestas; i++) {
-			tablaRespuesta = new TablaRespuesta();
-			// String myCheckBoxValue = request.getParameterValues(checkNamesList[i]);
-			// 
-			// request.getParameter(chequeo));
+			tablaRespuesta = new TablaRespuesta();			
 			j = i;
 			respuestaRec = request.getParameter(respuesta + i);
-
 			// NO HAGO el control de contador de respuestas, grabo y punto en la base de
 			// datos. un blanco por defecto si no viene texto.
-			// if (respuestaRec !=null && !respuestaRec.equals("")) contadorRespuestas++;
+			// 
 			contadorRespuestas++;
 			if (respuestaRec == null || respuestaRec.equals("")) {
 				tablaRespuesta.setTextoRespuesta("texto por defecto");
@@ -117,10 +109,6 @@ public class CrearPreguntaRespuestaAction extends Action {
 		tablaPregunta.setNumeroRespuestas(numeroRespuestas + "");
 
 		sesion.setAttribute("listaRespuestas", listaRespuestas);
-
-		for (int i = 0; i < listaRespuestas.size(); i++) {
-			System.out.println("dfinalizando*" + listaRespuestas.get(i));
-		}
 		
 		if (contadorRespuestas == numeroRespuestas) {
 			// sesion.setAttribute("preguntarespuestaguardada", 0);
@@ -156,11 +144,12 @@ public class CrearPreguntaRespuestaAction extends Action {
 			Integer asignaturaIns = (Integer) sesion.getAttribute("asignaturaSel");
 			String nombreControlIns = (String) sesion.getAttribute("nombreControl");
 			String descControlIns = (String) sesion.getAttribute("descControl");
+			Integer idUsuario = (Integer)sesion.getAttribute("idusuario");
 			TablaPregunta tablaPreguntaIns = tablaPregunta;
 			cuestionarioDAOGrabar = new CuestionarioDAOGrabar();
 			try {
 				resultadoIns = cuestionarioDAOGrabar.insertarCuestionario(gradoIns.toString(), asignaturaIns.toString(),
-						nombreControlIns, descControlIns, tablaPreguntaIns);
+						nombreControlIns, descControlIns, idUsuario.intValue(), tablaPreguntaIns);
 			} catch (DaoException | SQLException e) {
 				e.printStackTrace();
 			}

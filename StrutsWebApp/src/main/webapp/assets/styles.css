@@ -11,7 +11,7 @@
 input[type=text]{
   border: 1px solid #999;
   border-radius: 4px;
-  -webkit-appearance: none;
+  -webkit-appearance: none;  
 }
 
 input:focus{

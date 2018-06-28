@@ -163,7 +163,7 @@ public class CuestionarioDAO {
 	 * @throws DaoException
 	 * @throws SQLException
 	 */
-	public ArrayList<TablaCuestionario> getCuestionariosByAsignatura(int asignaturaSel)
+	public ArrayList<TablaCuestionario> getCuestionariosByAsignatura(int asignaturaSel, int superUsuario, int idUsuario)
 			throws DaoException, SQLException {
 
 		// Si no hemos obtenido la conexion devolvemos una excepcion (DaoExcepcion)
@@ -176,17 +176,25 @@ public class CuestionarioDAO {
 		ArrayList<TablaCuestionario> listaCuestionarios = new ArrayList<TablaCuestionario>();
 		TablaCuestionario tablaCuestionario = null;
 		try {
-			stmt = conexion.prepareStatement(
-					"select idCuestionario, nombreCuestionario, publicacion, idAsignatura, descCuestionario from cuestionarioudima.cuestionario\r\n"
-							+ "where idAsignatura = " + asignaturaSel);
+			if(superUsuario==1) {
+				stmt = conexion.prepareStatement(
+						"select idCuestionario, nombreCuestionario, publicacion, idAsignatura, descCuestionario from cuestionarioudima.cuestionario\r\n"
+								+ "where idAsignatura = " + asignaturaSel);
+			}else{
+				stmt = conexion.prepareStatement(
+						"select idCuestionario, nombreCuestionario, publicacion, idAsignatura, descCuestionario from cuestionarioudima.cuestionario\r\n"
+								+ "where idAsignatura = " + asignaturaSel + " and idProfesor=" + idUsuario);	
+			}
+			
+			
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				tablaCuestionario = new TablaCuestionario();
 				tablaCuestionario.setIdCuestionario(rs.getInt("idCuestionario"));
-				tablaCuestionario.setNombreCuestionario(rs.getString("nombreCuestionario"));
+				tablaCuestionario.setNombreCuestionario(rs.getString("nombreCuestionario").replaceAll("\"", "'"));
 				tablaCuestionario.setPublicacion(rs.getInt("publicacion"));
 				tablaCuestionario.setIdAsignatura(rs.getInt("idAsignatura"));
-				tablaCuestionario.setDescCuestionario(rs.getString("descCuestionario"));
+				tablaCuestionario.setDescCuestionario(rs.getString("descCuestionario").replaceAll("\"", "'"));
 				listaCuestionarios.add(tablaCuestionario);
 			}
 
@@ -259,7 +267,7 @@ public class CuestionarioDAO {
 				tablaPregunta = new TablaPregunta();
 				idPreg = rs.getInt("idPregunta");
 				// idPregdeRespuesta = rs.getInt("resp.idRespuesta");
-				txtPreg = rs.getString("textoPregunta");
+				txtPreg = rs.getString("textoPregunta").replaceAll("\"", "'");
 				tipoPreg = rs.getString("tipoPregunta");
 				tablaPregunta.setIdPregunta(idPreg);
 				tablaPregunta.setTextoPregunta(txtPreg);
@@ -269,7 +277,7 @@ public class CuestionarioDAO {
 				do {
 					tablaRespuesta = new TablaRespuesta();
 					idResp = rs.getInt("idRespuesta");
-					txtResp = rs.getString("textoRespuesta");
+					txtResp = rs.getString("textoRespuesta").replaceAll("\"", "'");
 					tablaRespuesta.setIdRespuesta(idResp);
 					tablaRespuesta.setTextoRespuesta(txtResp);
 					if (rs.getInt("validaRespuesta") == 1) {

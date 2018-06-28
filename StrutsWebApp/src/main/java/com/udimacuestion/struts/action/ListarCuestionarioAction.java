@@ -47,16 +47,14 @@ public class ListarCuestionarioAction extends Action {
 		if (gradoSel != null) {
 			// si se ha seleccionado un grado, hay que reiniciliar el valor de la
 			// asignatura, nombrecontrol, preguntas y respuestas
-			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera",
-			// "si");;
+			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera", "si");;
 			return gradoSeleccionadoBusquedaAsig(gradoSel);
 		}
 		String asignaturaSel = (String) request.getParameter("asignaturaSel");
 		if (asignaturaSel != null) {
 			// si se ha seleccionado un asignatura, hay que reiniciliar el valor
 			// nombrecontrol, preguntas y respuestas
-			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera",
-			// "si");;
+			// y tb request.getSession().setAttribute("preguntarespuestaguardadaprimera", "si");;
 			return asignaturaSeleccionadaBusquedaControl(asignaturaSel);
 		}
 		String controlSel = (String) request.getParameter("controlSel");		
@@ -91,24 +89,21 @@ public class ListarCuestionarioAction extends Action {
 		String publicacion = (String) request.getParameter("publicar");
 		
 		if (publicacion != null) {
-			// publicación de cuestionario
-			
+			// publicación de cuestionario			
 			return publicarCuestionario((Integer) request.getSession().getAttribute("controlSel"), publicacion);
 		}
 
 		String eliminacuestionario = (String) request.getParameter("eliminarcuestionario");
 		
 		if (eliminacuestionario != null) {
-			// publicación de cuestionario
-			
+			// eliminar cuestionario			
 			return eliminarCuestionario(eliminacuestionario);
 		}
 
 		String modificacuestionario = (String) request.getParameter("modificarcuestionario");
 		
 		if (modificacuestionario != null) {
-			// publicación de cuestionario
-			
+			// modificación de cuestionario			
 			String campotextoenvionuevo = (String) request.getParameter("campotexto");
 			String campotextoenvionuevoDesc = (String) request.getParameter("campotextoDesc");
 			String controlSeleccionadoCambio = (String) request.getParameter("controlSeleccionado");
@@ -125,9 +120,6 @@ public class ListarCuestionarioAction extends Action {
 		// recuperamos los datos del grado.
 		cdao = new CuestionarioDAO();
 		ArrayList<TablaGrado> listaGrados = cdao.getGrados();
-
-
-
 		if (listaGrados == null) {
 			return "fallo";
 		} else {
@@ -137,13 +129,8 @@ public class ListarCuestionarioAction extends Action {
 			sesion.setAttribute("asignaturaSel", null);
 			sesion.setAttribute("listaPreguntasRespuestas", null);
 			
-			Integer gradoSeleccionado = (Integer)request.getSession().getAttribute("gradoSel");
-
-			
-			//sesion.setAttribute("preguntarespuestaguardada", 0);
-			//sesion.setAttribute("opcionlistado", "si");
-			if (gradoSeleccionado !=null) gradoSeleccionadoBusquedaAsig(gradoSeleccionado+"");
-			
+			Integer gradoSeleccionado = (Integer)request.getSession().getAttribute("gradoSel");			
+			if (gradoSeleccionado !=null) gradoSeleccionadoBusquedaAsig(gradoSeleccionado+"");			
 			
 			return "hecho";
 		}
@@ -198,13 +185,16 @@ public class ListarCuestionarioAction extends Action {
 		sesion.setAttribute("listaPreguntasRespuestas", null);
 		sesion.setAttribute("controlSel", null);
 		sesion.setAttribute("preguntaMod", "");
+		Integer superUsuario = (Integer)sesion.getAttribute("superusuario");
+		Integer idUsuario = (Integer)sesion.getAttribute("idusuario");
+		
 
 		sesion.setAttribute("opcionlistado", "si");
 		// recuperamos la lista de controles.
 		cdao = new CuestionarioDAO();
 		ArrayList<TablaCuestionario> listaControles = null;
 		try {
-			listaControles = cdao.getCuestionariosByAsignatura(Integer.parseInt(asignaturaSel));
+			listaControles = cdao.getCuestionariosByAsignatura(Integer.parseInt(asignaturaSel), superUsuario.intValue(), idUsuario.intValue());
 		} catch (NumberFormatException | DaoException | SQLException e) {
 			e.printStackTrace();
 		}

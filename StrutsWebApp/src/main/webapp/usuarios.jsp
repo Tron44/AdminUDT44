@@ -83,19 +83,19 @@
 				Nombre de Usuario		
 				</label>
 				<br>				
-				<%out.println("<input type='text' name='userName' value='"+ tablaUsuario.getUsuario() + "' size='50' style='height:40px'>");%>
+				<%out.println("<input type='text' name='userName' value='"+ tablaUsuario.getUsuario() + "' class='form-control' style='height:40px'>");%>
 				<p>
 				<label>
 				Email del Usuario		
 				</label>
 				<br>				
-				<%out.println("<input type='text' name='email' value='"+ tablaUsuario.getEmail() + "' size='50' style='height:40px'>");%>
+				<%out.println("<input type='text' name='email' value='"+ tablaUsuario.getEmail() + "' class='form-control' style='height:40px'>");%>
 				<p>
 				<label>
 				Password			
 				</label>
 				<br>
-		 		<%out.println("<input type='password' name='password' value='"+ tablaUsuario.getPassword() + "' size='50' style='height:40px'>");
+		 		<%out.println("<input type='password' name='password' value='"+ tablaUsuario.getPassword() + "' class='form-control' style='height:40px'>");
 		 		out.println("<input type='hidden' name='idUsuario' value='"+ tablaUsuario.getIdUsuario() + "'>");%>
 		 				 		
 				<p>

@@ -35,7 +35,6 @@ public class UsuarioAction extends Action {
 	public String controlEntrada(ActionForm form, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		tablaUsuario = new TablaUsuario();
-		
 		//se ejecuta el listado de usuarios para dejarlo en sesión y mostrarlo posteriormente.
 		listadoUsuarios();
 		String alta_usuario = request.getParameter("altausuario");
@@ -103,7 +102,6 @@ public class UsuarioAction extends Action {
 		try {
 			udao.altaUsuario(tablaUsuario);
 		} catch (DaoException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "OK";
@@ -127,8 +125,7 @@ public class UsuarioAction extends Action {
 		udao = new UsuarioDAO();
 		try {
 			udao.modUsuario(tablaUsuario);
-		} catch (DaoException | SQLException e) {
-			// TODO Auto-generated catch block
+		} catch (DaoException | SQLException e) {			
 			e.printStackTrace();
 		}
 		return "OK";
@@ -143,14 +140,11 @@ public class UsuarioAction extends Action {
 		tablaUsuario.setPassword(usuarioForm.getPassword());
 		tablaUsuario.setEmail(usuarioForm.getEmail());
 		tablaUsuario.setSuperUsuario(usuarioForm.getSuperUsuario());
-		tablaUsuario.setIdUsuario(usuarioForm.getIdUsuario());
-
-		
+		tablaUsuario.setIdUsuario(usuarioForm.getIdUsuario());		
 		udao = new UsuarioDAO();
 		try {
 			udao.delUsuario(tablaUsuario);
 		} catch (DaoException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "OK";
@@ -166,7 +160,6 @@ public class UsuarioAction extends Action {
 			sesion.setAttribute("listaUsuarios", listaUsuario);
 			sesion.setAttribute("tablaUsuario", null);
 		} catch (DaoException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "hecho";
@@ -182,7 +175,6 @@ public class UsuarioAction extends Action {
 			sesion.setAttribute("tablaUsuario", tablaUsuario);
 
 		} catch (DaoException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return tablaUsuario;

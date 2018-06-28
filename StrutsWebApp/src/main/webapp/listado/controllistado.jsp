@@ -32,12 +32,12 @@
 						String nombreControl = ((String)request.getSession().getAttribute("nombreControl"));
 						String descControl = ((String)request.getSession().getAttribute("descControl"));
 						out.println("<br><a href='/cuestionariosUDT44/listarcuestionario.do?eliminarcuestionario=" + controlSeleccionado + "' class='btn btn-danger' onclick=\"return confirm('¿Estás seguro de eliminar el cuestionario seleccionado?')\"/>Eliminar Cuestionario</a>");
-						out.println("<input type=button class='btn btn-primary' value='Modificar nomb/desc Cuestionario' onclick=\"campotexto.disabled = false; campotextoDesc.disabled = false; campotexto.focus(); campotexto.value='"+ nombreControl + "'; campotextoDesc.value='"+ descControl + "'\"><p><br>");
+						out.println("<input type=button class='btn btn-primary' value='Modificar nomb/desc Cuestionario' onclick=\"campotexto.disabled = false; campotextoDesc.disabled = false; modificarcuestionario.disabled = false; campotexto.focus(); campotexto.value='"+ nombreControl + "'; campotextoDesc.value='"+ descControl + "'\"><p><br>");
 						out.println("<form action='/cuestionariosUDT44/listarcuestionario.do' name='modificarcuestionarioform'>");
-						out.println("<input type='text' value='Introduce el nuevo nombre del cuestionario' name='campotexto' size='50' style='height:40px' id='campotexto' disabled='true'>");
+						out.println("<input type='text' value='Introduce el nuevo nombre del cuestionario' name='campotexto' class='form-control' style='height:40px' id='campotexto' disabled='true'>");
 						out.println("<input type='hidden' name='controlSeleccionado' id='controlSeleccionado' value='" + controlSeleccionado + "'>");
-						out.println("<p><br><input type='text' value='Introduce la nueva desc. del cuestionario' name='campotextoDesc' maxlength='100' size='50' style='height:40px' id='campotextoDesc' disabled='true'>");
-						out.println("<input type='submit' value=' >> ' class='btn btn-primary' name='modificarcuestionario'>");
+						out.println("<p><br><input type='text' value='Introduce la nueva desc. del cuestionario' class='form-control' name='campotextoDesc' maxlength='100' style='height:40px' id='campotextoDesc' disabled='true'>");
+						out.println("<br><input type='submit' value='Aplicar cambios' class='btn btn-success' id='modificarcuestionario' name='modificarcuestionario' disabled='true'>");
 						out.println("</form><p>");
 						//out.println("<a href='/cuestionariosUDT44/listarcuestionario.do?modificarcuestionario=" + controlSeleccionado + "' class='btn btn-primary'> >> </a>");
 						

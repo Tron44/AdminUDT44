@@ -34,7 +34,7 @@ public class CuestionarioDAOGrabar {
 	 * @throws DaoException
 	 * @throws SQLException
 	 */
-	public int insertarCuestionario(String grado, String asignatura, String nombreControl, String descControl, TablaPregunta tablaPregunta)
+	public int insertarCuestionario(String grado, String asignatura, String nombreControl, String descControl, int idUsuario, TablaPregunta tablaPregunta)
 			throws DaoException, SQLException {
 
 		// Si no hemos obtenido la conexion devolvemos una excepcion (DaoExcepcion)
@@ -60,8 +60,8 @@ public class CuestionarioDAOGrabar {
 			stmt.close();
 			stmt = conexion
 					.prepareStatement("INSERT INTO `cuestionarioudima`.`cuestionario`\r\n" + "(`idCuestionario`,\r\n"
-							+ "`nombreCuestionario`,\r\n" + "`publicacion`,\r\n" + "`idAsignatura`,\r\n" + "`descCuestionario`)\r\n" + "VALUES\r\n"
-							+ "(" + idCuestionario + ", '" + nombreControl + "', 0," + asignatura + ", '" + descControl+ "');");
+							+ "`nombreCuestionario`,\r\n" + "`publicacion`,\r\n" + "`idAsignatura`,\r\n" + "`idProfesor`,\r\n" + "`descCuestionario`)\r\n" + "VALUES\r\n"
+							+ "(" + idCuestionario + ", '" + nombreControl + "', 0," + asignatura + ", " + idUsuario + ", '" + descControl+ "');");
 
 			resultadoUpdate = stmt.executeUpdate();
 			if (resultadoUpdate > 0) {
@@ -147,7 +147,7 @@ public class CuestionarioDAOGrabar {
 	 * @throws DaoException
 	 * @throws SQLException
 	 */
-	public int insertarSoloCuestionario(String grado, String asignatura, String nombreControl, String descControl)
+	public int insertarSoloCuestionario(String grado, String asignatura, String nombreControl, int idUsuario, String descControl)
 			throws DaoException, SQLException {
 
 		// Si no hemos obtenido la conexion devolvemos una excepcion (DaoExcepcion)
@@ -171,8 +171,8 @@ public class CuestionarioDAOGrabar {
 			stmt.close();		
 			stmt = conexion
 					.prepareStatement("INSERT INTO `cuestionarioudima`.`cuestionario`\r\n" + "(`idCuestionario`,\r\n"
-							+ "`nombreCuestionario`,\r\n" + "`publicacion`,\r\n" + "`idAsignatura`,\r\n" + "`descCuestionario`)\r\n" + "VALUES\r\n"
-							+ "(" + idCuestionario + ", '" + nombreControl + "', 0," + asignatura + ", '" + descControl+ "');");
+							+ "`nombreCuestionario`,\r\n" + "`publicacion`,\r\n" + "`idAsignatura`,\r\n" + "`idProfesor`,\r\n" + "`descCuestionario`)\r\n" + "VALUES\r\n"
+							+ "(" + idCuestionario + ", '" + nombreControl + "', 0," + asignatura + ", " + idUsuario + ", '" + descControl+ "');");
 			
 			resultadoUpdate = stmt.executeUpdate();
 		} catch (SQLException sqle) {
